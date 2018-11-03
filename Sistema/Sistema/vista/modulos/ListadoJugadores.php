@@ -1,5 +1,5 @@
 <?php
-    $stmt =	Datos::getJugadores();
+    $stmt =	Datos::getSelecionesJug();
 ?>
 
 <section class="content">
@@ -24,7 +24,7 @@
                 <thead>
                 <tr>
                 <td ><b>Nombre del Jugador</b></th>
-                <td ><b>Posicion</b></th>
+                <td ><b>Deporte</b></th>
                 <td ><b>Equipo</b></th>
                 <td align="center" style="width:40px"><b>Editar</b></th>
                 <td align="center" style="width:40px"><b>Borrar</b></th>
@@ -35,12 +35,12 @@
               //Se hace un array asociativo para poder sacar los valores
                   {?>
                   <tr>
-                    <td align="center"><a href="index.php?action=perfil&id=<?= $datos['idJugador'] ?>"><?= $datos['nombre'] ?></a></td>
+                    <td align="center"><a href="index.php?action=perfil&id=<?= $datos['idJugador'] ?>"><?= $datos['nombreJugador'] ?></a></td>
                     <?php
                         $stmt2 =	Datos::getEquipoID($datos["idEquipo"]);
                     ?>
-                    <td align="center"><?= $datos['tipoJugador'] ?></td>
-                    <td align="center"><?= $stmt2["nombre"] ?></td>
+                    <td align="center"><?= $datos['tipo'] ?></td>
+                    <td align="center"><?= $datos["equipo"] ?></td>
                     <td style="width:40px"><a href="index.php?action=editarJugador&id=<?= $datos["idJugador"] ?>">
                     <button type="button" class="btn btn-warning">Editar</button>
                     </a></td>

@@ -37,23 +37,9 @@ $resultado= $registro -> AddJugador();
                     <input type="text" class="form-control" id="exampleInputEmail1" placeholder="" name="nombre" required>
                     </div>
                     <div class="form-group">
-                    <label for="exampleInputEmail1">Tipo de jugador</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="" name="tipo" required>
-                    </div>
-                    <div class="form-group">
                     <label for="exampleInputEmail1">Foto</label>
                     <input type="file" class="form-control" id="exampleInputEmail1" placeholder="" name="foto">
                     </div>
-                    <label for="">Equipo</label>
-                    <select class="form-control" name="equipo">
-                        <?php while($datos = $stmt->fetch(PDO::FETCH_ASSOC))
-                        //Se hace un array asociativo para poder sacar los valores
-                        {?>
-                            <option value="<?= $datos["idEquipo"] ?>"><?= $datos["nombre"] ?></option>
-                        <?php }?>
-                    
-                    </select>
-                  <br><br>
                     <button type="submit" class="btn btn-primary" >Agregar Jugador</button><br><br>
                 </div>
                 </form>

@@ -48,8 +48,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>Sistema</b>Tutorias</a>
-    <img src="Sistema/imagenes/logo.png" alt="" width="200" height="200">
+    <a href="../../index2.html"><b>Sistema</b>Deportivo</a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">

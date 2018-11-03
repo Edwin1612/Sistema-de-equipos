@@ -61,7 +61,7 @@ class MvcControlador
 
     public function AddJugador()
     {
-        if(isset($_POST["nombre"]) && isset($_POST["equipo"]) && isset($_FILES['foto']) && isset($_POST['tipo']))
+        if(isset($_POST["nombre"]) && isset($_FILES['foto']))
         {
             $extensiones = array(0=>'image/jpg',1=>'image/jpeg',2=>'image/png');
             $max_tamanyo = 1024 * 1024 * 8;
@@ -83,7 +83,7 @@ class MvcControlador
                     }
                 }
             }
-            $datos = array("nombre"=>$_POST["nombre"] , "foto"=>$ruta_nuevo_destino , "equipo"=>$_POST["equipo"], "tipo"=> $_POST['tipo']);
+            $datos = array("nombre"=>$_POST["nombre"] , "foto"=>$ruta_nuevo_destino);
             $respuesta = Datos::AddJugador($datos);
             print_r($datos);
             return $respuesta;
@@ -106,6 +106,21 @@ class MvcControlador
             {
                 return $respuesta;
             }
+
+            
+        }
+        
+    }
+  
+    public function AddJugadorSelecion()
+    {
+        if(isset($_POST["jugador"]) && isset($_POST["equipo"]))
+        {
+            
+            $datos = array("jugador"=>$_POST["jugador"] , "equipo"=>$_POST["equipo"]);
+            print_r($datos);
+            $respuesta = Datos::AddJugadorSelecion($datos);
+            return $respuesta;
 
             
         }

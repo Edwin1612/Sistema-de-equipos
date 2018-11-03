@@ -61,6 +61,60 @@ class Datos extends Conexion{
         }
         $stmt->close();
     }
+  
+    public function AddJugadorSelecion($datosModel)
+    {
+        $stmt = Conexion::conectar()->prepare('SELECT count(*) from selecion WHERE idJugador=:id');
+        $stmt->bindParam(":id",$datosModel["jugador"]);
+        $stmt->execute();
+        $result = $stmt->fetch();
+      
+        if($result["count(*)"]<3)
+        {
+            $stmt3 = Conexion::conectar()->prepare('SELECT count(*) from vista_selecion WHERE idJugador=:id && tipo="Soccer"');
+            $stmt3->bindParam(":id",$datosModel["jugador"]);
+            $stmt3->execute();
+            $result2 = $stmt3->fetch();
+            if($result2["count(*)"]<1)
+            {
+              $stmt2 = Conexion::conectar()->prepare("INSERT INTO selecion (idJugador,idEquipo) VALUES(:jugador,:equipo) ");
+              $stmt2->bindParam(":jugador", $datosModel["jugador"] );
+              $stmt2->bindParam(":equipo", $datosModel["equipo"] );
+              $stmt2->execute();
+              return "success";
+            }else
+            {
+              $stmt3 = Conexion::conectar()->prepare('SELECT count(*) from vista_selecion WHERE idJugador=:id && tipo="Basquetbol"');
+              $stmt3->bindParam(":id",$datosModel["jugador"]);
+              $stmt3->execute();
+              $result2 = $stmt3->fetch();
+              if($result2["count(*)"]<1)
+              {
+                $stmt2 = Conexion::conectar()->prepare("INSERT INTO selecion (idJugador,idEquipo) VALUES(:jugador,:equipo) ");
+                $stmt2->bindParam(":jugador", $datosModel["jugador"] );
+                $stmt2->bindParam(":equipo", $datosModel["equipo"] );
+                $stmt2->execute();
+                return "success";
+              }else
+              {
+                $stmt3 = Conexion::conectar()->prepare('SELECT count(*) from vista_selecion WHERE idJugador=:id && tipo="Volibol"');
+                $stmt3->bindParam(":id",$datosModel["jugador"]);
+                $stmt3->execute();
+                $result2 = $stmt3->fetch();
+                if($result2["count(*)"]<1)
+                {
+                  $stmt2 = Conexion::conectar()->prepare("INSERT INTO selecion (idJugador,idEquipo) VALUES(:jugador,:equipo) ");
+                  $stmt2->bindParam(":jugador", $datosModel["jugador"] );
+                  $stmt2->bindParam(":equipo", $datosModel["equipo"] );
+                  $stmt2->execute();
+                  return "success";
+                }
+                
+              }
+            }
+          
+        }
+    }
 
     public function addSeg($datosModel)
     {
@@ -84,12 +138,9 @@ class Datos extends Conexion{
 
     public function AddJugador($datosModel)
     {
-        $equipo = $equipo= (int)$datosModel["equipo"];
-        $stmt = Conexion::conectar()->prepare("INSERT INTO jugadores (nombre,tipoJugador,idEquipo,ruta_img) 
-        VALUES(:nombre,:tipo,:idEquipo,:ruta)");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO jugadores (nombre,ruta_img) 
+        VALUES(:nombre,:ruta)");
         $stmt->bindParam(":nombre", $datosModel["nombre"] , PDO::PARAM_STR);
-        $stmt->bindParam(":tipo", $datosModel["tipo"] , PDO::PARAM_STR);
-        $stmt->bindParam(":idEquipo", $equipo);
         $stmt->bindParam(":ruta", $datosModel["foto"] , PDO::PARAM_STR);
         if($stmt->execute()){
             return "success";
@@ -307,6 +358,13 @@ class Datos extends Conexion{
     public function getJugadores()
     {
         $stmt = Conexion::conectar()->prepare('SELECT *from jugadores');
+        $stmt->execute();
+        return $stmt;
+    }
+  
+     public function getSelecionesJug()
+    {
+        $stmt = Conexion::conectar()->prepare('SELECT *from vista_selecion');
         $stmt->execute();
         return $stmt;
     }

@@ -20,6 +20,7 @@
     </a>
     <ul class="treeview-menu">
     <li><a href="index.php?action=agregarJugador"><i class="fa fa-circle-o"></i>Agregar</a></li>
+    <li><a href="index.php?action=selecion"><i class="fa fa-circle-o"></i>Selecion</a></li>
     <li><a href="index.php?action=ListadoJugadores"><i class="fa fa-circle-o"></i>Listado</a></li>
     </ul>
 </li>

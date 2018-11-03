@@ -9,8 +9,8 @@
                        || $enlacesModel== "ListadoEquipo" || $enlacesModel== "editarEquipo" || $enlacesModel== "eliminar"
                        || $enlacesModel== "agregarJugador" || $enlacesModel== "ListadoJugadores" || $enlacesModel== "editarJugador"
                        || $enlacesModel== "eliminarJugador" || $enlacesModel== "agregarAdministrador" || $enlacesModel== "ListadoAdministradores"
-                       || $enlacesModel== "editarAdministrador" || $enlacesModel== "editarAdministrador"  || $enlacesModel== "eliminarAdministrador"
-                       || $enlacesModel== "perfil"
+                       || $enlacesModel== "editarAdministrador" || $enlacesModel== "editarAdministrador"  || $enlacesModel== "eliminarAdministrador" 
+                       || $enlacesModel== "selecion" || $enlacesModel== "perfil"
                     ){
                         //Mostramos el URL concatenado con la variable $enlacesModel
                         $module = "vista/modulos/".$enlacesModel.".php";
